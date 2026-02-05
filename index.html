@@ -102,15 +102,15 @@
 
         <div class="column audio">
             <div class="content">
-                <h4>demon0ne Mixes</h4>
+                <h4>demon0ne Stream</h4>
                 <div class="sc-container">
                     <iframe 
                         width="100%" 
-                        height="300" 
+                        height="450" 
                         scrolling="no" 
                         frameborder="no" 
                         allow="autoplay" 
-                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/1211757820&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/demon0ne&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
                     </iframe>
                 </div>
                 <p>Modular synthesis explorations, hardware performance, and curated electronic music sets.</p>
@@ -120,7 +120,7 @@
     </div>
 
     <script>
-        // Initialize the filter to show all projects on load
+        // Initialize the filter
         filterSelection("all")
 
         function filterSelection(c) {
@@ -154,7 +154,7 @@
             element.className = arr1.join(" ");
         }
 
-        // Add active class to the current button (highlighting logic)
+        // Add active class to the current button
         var btnContainer = document.getElementById("filter-container");
         var btns = btnContainer.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {

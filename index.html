@@ -5,72 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adam Carrillo | demon0ne</title>
     <style>
-        /* General Page Styling */
+        /* CSS Variables for easy color switching */
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --content-bg: white;
+            --header-subtitle: #666;
+            --btn-bg: #ddd;
+        }
+
+        /* Dark Mode Colors */
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f4f4f4;
+            --content-bg: #2d2d2d;
+            --header-subtitle: #aaa;
+            --btn-bg: #444;
+        }
+
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
         }
-        .header {
-            text-align: center;
-            padding: 40px 0;
-        }
-        h1 { margin-bottom: 5px; }
-        .subtitle { color: #666; font-size: 1.1rem; margin-top: 0; }
 
-        /* Filter Button Styles */
-        #filter-container {
-            text-align: center;
-            margin-bottom: 30px;
+        /* Top Right Toggle Styling */
+        .theme-switch-wrapper {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
         }
-        .btn {
-            border: none;
-            outline: none;
-            padding: 10px 20px;
-            background-color: #ddd;
+        .theme-switch {
+            display: inline-block;
+            height: 24px;
+            position: relative;
+            width: 50px;
+        }
+        .theme-switch input { display:none; }
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
             cursor: pointer;
-            margin: 5px;
-            border-radius: 4px;
-            transition: 0.3s;
-            font-weight: bold;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
         }
-        .btn:hover { background-color: #ccc; }
+        .slider:before {
+            background-color: white;
+            bottom: 4px;
+            content: "";
+            height: 16px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 16px;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #007bff; }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        .header { text-align: center; padding: 40px 0; }
+        .subtitle { color: var(--header-subtitle); font-size: 1.1rem; margin-top: 0; }
+
+        #filter-container { text-align: center; margin-bottom: 30px; }
+        .btn {
+            border: none; outline: none; padding: 10px 20px;
+            background-color: var(--btn-bg); color: var(--text-color);
+            cursor: pointer; margin: 5px; border-radius: 4px; 
+            transition: 0.3s; font-weight: bold;
+        }
         .btn.active { background-color: #333; color: white; }
 
-        /* Project Grid Styles */
-        .row { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-        .column { 
-            display: none; 
-            width: 350px; 
-            margin: 15px; 
-            vertical-align: top;
-        }
+        .row { display: flex; flex-wrap: wrap; justify-content: center; max-width: 1200px; margin: 0 auto; }
+        .column { display: none; width: 350px; margin: 15px; vertical-align: top; }
         .content { 
-            background-color: white; 
-            padding: 20px; 
-            border-radius: 8px; 
+            background-color: var(--content-bg); 
+            padding: 20px; border-radius: 8px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-            height: 100%;
+            height: 100%; 
         }
         .show { display: block; }
-        
-        h4 { margin-top: 0; color: #007bff; font-size: 1.2rem; }
-        p { font-size: 0.95rem; color: #555; }
-
-        /* SoundCloud Specific Style */
-        .sc-container { margin-bottom: 15px; }
+        h4 { margin-top: 0; color: #007bff; }
     </style>
 </head>
 <body>
+
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider"></div>
+        </label>
+        <span style="margin-left: 10px; font-size: 0.8rem;">Dark Mode</span>
+    </div>
 
     <div class="header">
         <h1>Adam Carrillo</h1>
@@ -85,44 +120,42 @@
     </div>
 
     <div class="row">
-        
         <div class="column qa">
             <div class="content">
                 <h4>Game Testing Portfolio</h4>
-                <p>Extensive experience as a <strong>CQA Lead</strong> and credited game tester. Specialist in functional testing, bug tracking, and ensuring high-quality releases for PC and console titles.</p>
+                <p>Expertise in <strong>CQA Lead</strong> roles and functional testing for PC and Console.</p>
             </div>
         </div>
 
         <div class="column design">
             <div class="content">
                 <h4>Bambu Lab & Design</h4>
-                <p>Active 3D printing enthusiast utilizing <strong>Bambu Lab</strong> hardware. Focused on designing functional parts with PETG/ABS and constructing custom <strong>5U modular synthesizer cases</strong>.</p>
+                <p>Designing functional parts and <strong>5U modular synthesizer cases</strong>.</p>
             </div>
         </div>
 
         <div class="column audio">
             <div class="content">
                 <h4>demon0ne Stream</h4>
-                <div class="sc-container">
-                    <iframe 
-                        width="100%" 
-                        height="450" 
-                        scrolling="no" 
-                        frameborder="no" 
-                        allow="autoplay" 
-                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/demon0ne&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
-                    </iframe>
-                </div>
-                <p>Modular synthesis explorations, hardware performance, and curated electronic music sets.</p>
+                <iframe width="100%" height="400" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/demon0ne&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
             </div>
         </div>
-
     </div>
 
     <script>
-        // Initialize the filter
-        filterSelection("all")
+        // DARK MODE LOGIC
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }    
+        }
+        toggleSwitch.addEventListener('change', switchTheme, false);
 
+        // FILTER LOGIC
+        filterSelection("all")
         function filterSelection(c) {
             var x, i;
             x = document.getElementsByClassName("column");
@@ -132,7 +165,6 @@
                 if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
             }
         }
-
         function w3AddClass(element, name) {
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
@@ -141,7 +173,6 @@
                 if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
             }
         }
-
         function w3RemoveClass(element, name) {
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
@@ -153,20 +184,15 @@
             }
             element.className = arr1.join(" ");
         }
-
-        // Add active class to the current button
         var btnContainer = document.getElementById("filter-container");
         var btns = btnContainer.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function(){
                 var current = document.getElementsByClassName("active");
-                if (current.length > 0) {
-                    current[0].className = current[0].className.replace(" active", "");
-                }
+                if (current.length > 0) { current[0].className = current[0].className.replace(" active", ""); }
                 this.className += " active";
             });
         }
     </script>
-
 </body>
 </html>

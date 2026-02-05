@@ -1,21 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Adam Carrillo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Carrillo | demon0ne</title>
     <style>
         body { 
-            font-family: sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6;
             margin: 0;
+            padding: 20px;
             background-color: #f4f4f4;
+            color: #333;
         }
-        h1 { color: #333; }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        /* Filter Button Styles */
+        #filter-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn {
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            background-color: #ddd;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .btn:hover { background-color: #ccc; }
+        .btn.active { background-color: #333; color: white; }
+
+        /* Project Grid Styles */
+        .row { display: flex; flex-wrap: wrap; justify-content: center; max-width: 1000px; margin: 0 auto; }
+        .column { display: none; width: 300px; margin: 10px; }
+        .content { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .show { display: block; }
+        
+        h4 { margin-top: 0; color: #007bff; }
     </style>
 </head>
 <body>
-    <h1>Hello World! This is Adam Carrillo's site.. YES YES YALL.</h1>
+
+    <div class="header">
+        <h1>Adam Carrillo</h1>
+        <p>QA Lead | 3D Printing Enthusiast | Modular Audio</p>
+    </div>
+
+    <div id="filter-container">
+        <button class="btn active" onclick="filterSelection('all')">Show All</button>
+        <button class="btn" onclick="filterSelection('qa')">QA & Gaming</button>
+        <button class="btn" onclick="filterSelection('design')">3D Printing</button>
+        <button class="btn" onclick="filterSelection('audio')">Music</button>
+    </div>
+
+    <div class="row">
+        <div class="column qa">
+            <div class="content">
+                <h4>Game Testing Portfolio</h4>
+                <p>Shipped titles and CQA Lead experience. Specialist in functional testing.</p>
+            </div>
+        </div>
+        <div class="column design">
+            <div class="content">
+                <h4>Bambu Lab Projects</h4>
+                <p>Functional PETG/ABS prints and custom 5U modular synthesizer cases.</p>
+            </div>
+        </div>
+        <div class="column audio">
+            <div class="content">
+                <h4>Modular Synths & DJing</h4>
+                <p>5U/MU format research, hardware performance, and "demon0ne" mixes.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize the filter
+        filterSelection("all")
+
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("filter-container");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function(){
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+
 </body>
 </html>

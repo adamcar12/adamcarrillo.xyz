@@ -97,18 +97,27 @@
         .show { display: block; }
         
         h4 { margin-top: 0; color: var(--accent-color); }
+
+        /* Professional Link Buttons */
         .moby-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             margin-top: 15px;
             padding: 10px 15px;
-            background-color: var(--accent-color);
+            background-color: #333; /* Darker background for logo visibility */
             color: white;
             text-decoration: none;
             border-radius: 4px;
             font-size: 0.85rem;
-            transition: opacity 0.2s;
+            transition: background-color 0.2s;
+            gap: 10px;
         }
-        .moby-link:hover { opacity: 0.8; }
+        .moby-link:hover { background-color: #444; }
+        .moby-logo {
+            height: 20px;
+            width: auto;
+        }
     </style>
 </head>
 <body>
@@ -138,7 +147,10 @@
             <div class="content">
                 <h4>Game Testing Portfolio</h4>
                 <p>Extensive experience as a <strong>CQA Lead</strong> and credited tester across multiple shipped titles.</p>
-                <a href="https://www.mobygames.com/person/175045/adam-carrillo/" target="_blank" class="moby-link">View MobyGames Credits</a>
+                <a href="https://www.mobygames.com/person/1054323/adam-carrillo/" target="_blank" class="moby-link">
+                    <img src="https://www.mobygames.com/static/img/logo.37887f87.png" alt="MobyGames Logo" class="moby-logo">
+                    View Credits
+                </a>
             </div>
         </div>
 

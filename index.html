@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adam Carrillo | demon0ne</title>
     <style>
-        /* CSS Variables for easy color switching */
+        /* CSS Variables - Defaulted to Dark Mode */
         :root {
-            --bg-color: #f4f4f4;
-            --text-color: #333;
-            --content-bg: white;
-            --header-subtitle: #666;
-            --btn-bg: #ddd;
-        }
-
-        /* Dark Mode Colors */
-        [data-theme="dark"] {
             --bg-color: #1a1a1a;
             --text-color: #f4f4f4;
             --content-bg: #2d2d2d;
             --header-subtitle: #aaa;
             --btn-bg: #444;
+        }
+
+        /* Light Mode Colors (Applied when data-theme is 'light') */
+        [data-theme="light"] {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --content-bg: white;
+            --header-subtitle: #666;
+            --btn-bg: #ddd;
         }
 
         body { 
@@ -33,7 +33,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Top Right Toggle Styling */
+        /* Theme Switch Styling */
         .theme-switch-wrapper {
             position: absolute;
             top: 20px;
@@ -49,7 +49,7 @@
         }
         .theme-switch input { display:none; }
         .slider {
-            background-color: #ccc;
+            background-color: #007bff; /* Blue when "off" (which is dark mode) */
             bottom: 0;
             cursor: pointer;
             left: 0;
@@ -70,7 +70,8 @@
             width: 16px;
             border-radius: 50%;
         }
-        input:checked + .slider { background-color: #007bff; }
+        /* When checked, it turns grey for Light Mode */
+        input:checked + .slider { background-color: #ccc; }
         input:checked + .slider:before { transform: translateX(26px); }
 
         .header { text-align: center; padding: 40px 0; }
@@ -83,14 +84,14 @@
             cursor: pointer; margin: 5px; border-radius: 4px; 
             transition: 0.3s; font-weight: bold;
         }
-        .btn.active { background-color: #333; color: white; }
+        .btn.active { background-color: #007bff; color: white; }
 
         .row { display: flex; flex-wrap: wrap; justify-content: center; max-width: 1200px; margin: 0 auto; }
         .column { display: none; width: 350px; margin: 15px; vertical-align: top; }
         .content { 
             background-color: var(--content-bg); 
             padding: 20px; border-radius: 8px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
             height: 100%; 
         }
         .show { display: block; }
@@ -104,7 +105,7 @@
             <input type="checkbox" id="checkbox" />
             <div class="slider"></div>
         </label>
-        <span style="margin-left: 10px; font-size: 0.8rem;">Dark Mode</span>
+        <span style="margin-left: 10px; font-size: 0.8rem;">Light Mode Toggle</span>
     </div>
 
     <div class="header">
@@ -123,38 +124,49 @@
         <div class="column qa">
             <div class="content">
                 <h4>Game Testing Portfolio</h4>
-                <p>Expertise in <strong>CQA Lead</strong> roles and functional testing for PC and Console.</p>
+                <p>Expertise in <strong>CQA Lead</strong> roles and functional testing for PC and Console titles.</p>
             </div>
         </div>
 
         <div class="column design">
             <div class="content">
                 <h4>Bambu Lab & Design</h4>
-                <p>Designing functional parts and <strong>5U modular synthesizer cases</strong>.</p>
+                <p>Designing functional parts and <strong>5U modular synthesizer cases</strong> with PETG and ABS.</p>
             </div>
         </div>
 
         <div class="column audio">
             <div class="content">
                 <h4>demon0ne Stream</h4>
-                <iframe width="100%" height="400" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/demon0ne&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/demon0ne&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
             </div>
         </div>
     </div>
 
     <script>
-        // DARK MODE LOGIC
         const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        // Check for saved user preference
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'light') {
+                toggleSwitch.checked = true;
+            }
+        }
+
         function switchTheme(e) {
             if (e.target.checked) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
                 document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             }    
         }
         toggleSwitch.addEventListener('change', switchTheme, false);
 
-        // FILTER LOGIC
+        // Filter Logic
         filterSelection("all")
         function filterSelection(c) {
             var x, i;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adam Carrillo | demon0ne</title>
     <style>
+        /* General Page Styling */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             line-height: 1.6;
@@ -17,6 +18,9 @@
             text-align: center;
             padding: 40px 0;
         }
+        h1 { margin-bottom: 5px; }
+        .subtitle { color: #666; font-size: 1.1rem; margin-top: 0; }
+
         /* Filter Button Styles */
         #filter-container {
             text-align: center;
@@ -31,24 +35,46 @@
             margin: 5px;
             border-radius: 4px;
             transition: 0.3s;
+            font-weight: bold;
         }
         .btn:hover { background-color: #ccc; }
         .btn.active { background-color: #333; color: white; }
 
         /* Project Grid Styles */
-        .row { display: flex; flex-wrap: wrap; justify-content: center; max-width: 1000px; margin: 0 auto; }
-        .column { display: none; width: 300px; margin: 10px; }
-        .content { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .row { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .column { 
+            display: none; 
+            width: 350px; 
+            margin: 15px; 
+            vertical-align: top;
+        }
+        .content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            height: 100%;
+        }
         .show { display: block; }
         
-        h4 { margin-top: 0; color: #007bff; }
+        h4 { margin-top: 0; color: #007bff; font-size: 1.2rem; }
+        p { font-size: 0.95rem; color: #555; }
+
+        /* SoundCloud Specific Style */
+        .sc-container { margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>Adam Carrillo</h1>
-        <p>QA Lead | 3D Printing Enthusiast | Modular Audio</p>
+        <p class="subtitle">QA Lead | 3D Printing Enthusiast | Modular Audio</p>
     </div>
 
     <div id="filter-container">
@@ -59,28 +85,42 @@
     </div>
 
     <div class="row">
+        
         <div class="column qa">
             <div class="content">
                 <h4>Game Testing Portfolio</h4>
-                <p>Shipped titles and CQA Lead experience. Specialist in functional testing.</p>
+                <p>Extensive experience as a <strong>CQA Lead</strong> and credited game tester. Specialist in functional testing, bug tracking, and ensuring high-quality releases for PC and console titles.</p>
             </div>
         </div>
+
         <div class="column design">
             <div class="content">
-                <h4>Bambu Lab Projects</h4>
-                <p>Functional PETG/ABS prints and custom 5U modular synthesizer cases.</p>
+                <h4>Bambu Lab & Design</h4>
+                <p>Active 3D printing enthusiast utilizing <strong>Bambu Lab</strong> hardware. Focused on designing functional parts with PETG/ABS and constructing custom <strong>5U modular synthesizer cases</strong>.</p>
             </div>
         </div>
+
         <div class="column audio">
             <div class="content">
-                <h4>Modular Synths & DJing</h4>
-                <p>5U/MU format research, hardware performance, and "demon0ne" mixes.</p>
+                <h4>demon0ne Mixes</h4>
+                <div class="sc-container">
+                    <iframe 
+                        width="100%" 
+                        height="300" 
+                        scrolling="no" 
+                        frameborder="no" 
+                        allow="autoplay" 
+                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/1211757820&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                    </iframe>
+                </div>
+                <p>Modular synthesis explorations, hardware performance, and curated electronic music sets.</p>
             </div>
         </div>
+
     </div>
 
     <script>
-        // Initialize the filter
+        // Initialize the filter to show all projects on load
         filterSelection("all")
 
         function filterSelection(c) {
@@ -114,13 +154,15 @@
             element.className = arr1.join(" ");
         }
 
-        // Add active class to the current button (highlight it)
+        // Add active class to the current button (highlighting logic)
         var btnContainer = document.getElementById("filter-container");
         var btns = btnContainer.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function(){
                 var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" active", "");
+                }
                 this.className += " active";
             });
         }

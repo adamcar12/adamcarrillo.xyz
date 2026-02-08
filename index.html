@@ -3,111 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journal - Login</title>
+    <title>Journal - Your Free Mental Health Companion</title>
+    <meta name="description" content="A free, private journaling platform designed to support your mental health journey through daily reflection and self-discovery.">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="auth-container">
-        <div class="auth-card">
-            <!-- Login Section -->
-            <div id="login-section">
-                <h1>Welcome Back</h1>
-                <p>Login to access your private journal</p>
-
-                <form id="login-form">
-                    <div class="form-group">
-                        <label for="login-username">Username</label>
-                        <input
-                            type="text"
-                            id="login-username"
-                            name="username"
-                            required
-                            autocomplete="username"
-                            placeholder="Enter your username"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input
-                            type="password"
-                            id="login-password"
-                            name="password"
-                            required
-                            autocomplete="current-password"
-                            placeholder="Enter your password"
-                        >
-                    </div>
-
-                    <span id="login-error" class="error-message"></span>
-
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-
-                <div class="toggle-link">
-                    Don't have an account? <a href="#" id="show-register">Create one</a>
-                </div>
-            </div>
-
-            <!-- Register Section -->
-            <div id="register-section" style="display: none;">
-                <h1>Create Account</h1>
-                <p>Start your private journaling journey</p>
-
-                <form id="register-form">
-                    <div class="form-group">
-                        <label for="register-username">Username</label>
-                        <input
-                            type="text"
-                            id="register-username"
-                            name="username"
-                            required
-                            minlength="3"
-                            maxlength="50"
-                            autocomplete="username"
-                            placeholder="Choose a username (3-50 characters)"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="register-password">Password</label>
-                        <input
-                            type="password"
-                            id="register-password"
-                            name="password"
-                            required
-                            minlength="6"
-                            autocomplete="new-password"
-                            placeholder="Choose a password (min 6 characters)"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="register-confirm-password">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="register-confirm-password"
-                            name="confirm-password"
-                            required
-                            autocomplete="new-password"
-                            placeholder="Confirm your password"
-                        >
-                    </div>
-
-                    <span id="register-error" class="error-message"></span>
-
-                    <button type="submit" class="btn btn-primary">Create Account</button>
-                </form>
-
-                <div class="toggle-link">
-                    Already have an account? <a href="#" id="show-login">Login</a>
+<body class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Your Mind Deserves a Safe Space</h1>
+                <p class="hero-subtitle">A completely free, private journaling platform designed to support your mental health and emotional well-being</p>
+                <div class="hero-cta">
+                    <a href="login.html" class="btn btn-primary btn-lg">Start Your Journey - Free Forever</a>
+                    <p class="hero-note">No credit card required • Private & secure • Always free</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="js/api.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/auth.js"></script>
+    <!-- Why Journaling Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Why Journaling Transforms Mental Health</h2>
+            <p class="section-intro">Research shows that regular journaling can significantly improve emotional well-being, reduce stress, and help you process difficult experiences.</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Process Your Emotions</h3>
+                    <p>Writing helps you understand and work through complex feelings, turning overwhelming emotions into manageable insights.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Reduce Anxiety & Stress</h3>
+                    <p>Regular journaling has been shown to lower cortisol levels and reduce symptoms of anxiety and depression.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Track Your Progress</h3>
+                    <p>See patterns in your thoughts and behaviors over time, celebrating growth and identifying what truly helps you.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌱</div>
+                    <h3>Build Self-Awareness</h3>
+                    <p>Develop a deeper understanding of yourself, your triggers, and what brings you peace and happiness.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">😌</div>
+                    <h3>Improve Sleep Quality</h3>
+                    <p>Evening journaling helps clear your mind, reducing nighttime rumination and improving sleep.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">✨</div>
+                    <h3>Boost Problem-Solving</h3>
+                    <p>Writing about challenges helps your brain process solutions more effectively than just thinking about them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Science Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Backed by Science</h2>
+            <div class="science-content">
+                <div class="science-stat">
+                    <div class="stat-number">76%</div>
+                    <p>of adults who journal report better mental health outcomes</p>
+                </div>
+                <div class="science-stat">
+                    <div class="stat-number">20min</div>
+                    <p>daily is all it takes to see significant improvements</p>
+                </div>
+                <div class="science-stat">
+                    <div class="stat-number">100%</div>
+                    <p>free and accessible to everyone, forever</p>
+                </div>
+            </div>
+            <p class="science-text">
+                Studies from the University of Texas and Cambridge University show that expressive writing strengthens immune cells,
+                reduces symptoms of anxiety and depression, and helps people cope with traumatic events more effectively.
+                Your thoughts matter, and this space is designed to honor that.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Features Designed for Your Well-Being</h2>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>🔒 Completely Private</h3>
+                    <p>Your entries are encrypted and only accessible to you. No ads, no data selling, no judgment.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>🏷️ Tag Your Moods</h3>
+                    <p>Organize entries by emotions, topics, or themes to discover patterns in your mental health.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>🔍 Search Your Journey</h3>
+                    <p>Find past entries instantly to reflect on your growth and remember what worked.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>📱 Write Anywhere</h3>
+                    <p>Access your journal from any device, whenever you need it most.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>⚡ Quick & Simple</h3>
+                    <p>No overwhelming features - just a clean, focused space for your thoughts.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>💝 Free Forever</h3>
+                    <p>Mental health support shouldn't cost money. This tool will always be free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="section roadmap-section">
+        <div class="container">
+            <h2 class="section-title">The Future: AI-Powered Support</h2>
+            <p class="section-intro">We're building something special to help you through the hardest moments.</p>
+
+            <div class="roadmap-content">
+                <div class="roadmap-item">
+                    <div class="roadmap-status current">Available Now</div>
+                    <h3>Private, Secure Journaling</h3>
+                    <p>Express yourself freely in a safe, judgment-free space</p>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-status upcoming">Coming Soon</div>
+                    <h3>AI Compassion Companion</h3>
+                    <p>When you're going through difficult times, our AI will offer supportive insights, gentle guidance, and evidence-based coping strategies. Think of it as a compassionate friend who's always there to listen, validate your feelings, and help you find your way through the darkness.</p>
+                    <ul class="roadmap-features">
+                        <li>Personalized emotional support based on your journal entries</li>
+                        <li>Evidence-based coping techniques tailored to your situation</li>
+                        <li>Pattern recognition to help you understand your mental health triggers</li>
+                        <li>Gentle prompts to guide you through difficult emotions</li>
+                        <li>Crisis resources when you need immediate help</li>
+                    </ul>
+                    <p class="roadmap-note"><strong>Still free.</strong> Mental health support should never be a luxury.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Your Mental Health Journey Today</h2>
+                <p>Join thousands of people who have found clarity, peace, and growth through journaling.</p>
+                <a href="login.html" class="btn btn-primary btn-lg">Get Started - 100% Free</a>
+                <p class="cta-note">Takes less than 30 seconds to create an account</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Your mental health matters. This platform will always be free.</p>
+            <p class="footer-note">If you're in crisis, please contact: <strong>988 Suicide & Crisis Lifeline</strong> (US) or your local emergency services.</p>
+        </div>
+    </footer>
 </body>
 </html>

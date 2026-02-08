@@ -4,6 +4,11 @@ require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRY = '24h';
 
+// Validate JWT_SECRET is set
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET environment variable is not set!');
+}
+
 /**
  * Generate JWT token
  * @param {Object} payload - User data to encode

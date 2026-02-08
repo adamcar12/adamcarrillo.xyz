@@ -5,7 +5,6 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth.routes');
 const entryRoutes = require('./routes/entry.routes');
 const tagRoutes = require('./routes/tag.routes');
-const migrateRoutes = require('./routes/migrate.routes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -59,7 +58,6 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/entries', entryRoutes);
 app.use('/api/tags', tagRoutes);
-app.use('/api/migrate', migrateRoutes); // TEMPORARY: Remove after running migration
 
 // 404 handler
 app.use((req, res) => {

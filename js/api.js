@@ -1,5 +1,5 @@
 // API Client for Journal Backend
-const API_BASE_URL = 'https://adamcarrilloxyz-production.up.railway.app/api';
+const API_BASE_URL = 'https://adamcarrilloxyz-production-1ec2.up.railway.app/api';
 
 /**
  * Get JWT token from localStorage

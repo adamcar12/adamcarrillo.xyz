@@ -14,7 +14,7 @@ pool.on('connect', () => {
 
 pool.on('error', (err) => {
     console.error('Unexpected error on idle PostgreSQL client', err);
-    process.exit(-1);
+    // Don't exit - let the pool handle reconnection automatically
 });
 
 module.exports = pool;

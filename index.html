@@ -3,233 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adam Carrillo | demon0ne</title>
-    <style>
-        /* CSS Variables - Defaulted to Dark Mode */
-        :root {
-            --bg-color: #1a1a1a;
-            --text-color: #f4f4f4;
-            --content-bg: #2d2d2d;
-            --header-subtitle: #aaa;
-            --btn-bg: #444;
-            --accent-color: #007bff;
-        }
-
-        /* Light Mode Colors */
-        [data-theme="light"] {
-            --bg-color: #f4f4f4;
-            --text-color: #333;
-            --content-bg: white;
-            --header-subtitle: #666;
-            --btn-bg: #ddd;
-        }
-
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Theme Switch Styling */
-        .theme-switch-wrapper {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .theme-switch {
-            display: inline-block;
-            height: 24px;
-            position: relative;
-            width: 50px;
-        }
-        .theme-switch input { display:none; }
-        .slider {
-            background-color: var(--accent-color);
-            bottom: 0;
-            cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            background-color: white;
-            bottom: 4px;
-            content: "";
-            height: 16px;
-            left: 4px;
-            position: absolute;
-            transition: .4s;
-            width: 16px;
-            border-radius: 50%;
-        }
-        input:checked + .slider { background-color: #ccc; }
-        input:checked + .slider:before { transform: translateX(26px); }
-
-        .header { text-align: center; padding: 40px 0; }
-        .subtitle { color: var(--header-subtitle); font-size: 1.1rem; margin-top: 0; }
-
-        #filter-container { text-align: center; margin-bottom: 30px; }
-        .btn {
-            border: none; outline: none; padding: 10px 20px;
-            background-color: var(--btn-bg); color: var(--text-color);
-            cursor: pointer; margin: 5px; border-radius: 4px; 
-            transition: 0.3s; font-weight: bold;
-        }
-        .btn.active { background-color: var(--accent-color); color: white; }
-
-        .row { display: flex; flex-wrap: wrap; justify-content: center; max-width: 1200px; margin: 0 auto; }
-        .column { display: none; width: 350px; margin: 15px; vertical-align: top; }
-        .content { 
-            background-color: var(--content-bg); 
-            padding: 20px; border-radius: 8px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
-            height: 100%; 
-        }
-        .show { display: block; }
-        
-        h4 { margin-top: 0; color: var(--accent-color); }
-
-        /* Professional Link Buttons */
-        .moby-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 15px;
-            padding: 10px 15px;
-            background-color: #333; /* Darker background for logo visibility */
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            transition: background-color 0.2s;
-            gap: 10px;
-        }
-        .moby-link:hover { background-color: #444; }
-        .moby-logo {
-            height: 20px;
-            width: auto;
-        }
-    </style>
+    <title>Journal - Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Login Section -->
+            <div id="login-section">
+                <h1>Welcome Back</h1>
+                <p>Login to access your private journal</p>
 
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider"></div>
-        </label>
-        <span style="margin-left: 10px; font-size: 0.8rem;">Light Mode Toggle</span>
-    </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input
+                            type="text"
+                            id="login-username"
+                            name="username"
+                            required
+                            autocomplete="username"
+                            placeholder="Enter your username"
+                        >
+                    </div>
 
-    <div class="header">
-        <h1>Adam Carrillo</h1>
-        <p class="subtitle">QA Lead | 3D Printing Enthusiast | Modular Audio</p>
-    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input
+                            type="password"
+                            id="login-password"
+                            name="password"
+                            required
+                            autocomplete="current-password"
+                            placeholder="Enter your password"
+                        >
+                    </div>
 
-    <div id="filter-container">
-        <button class="btn active" onclick="filterSelection('all')">Show All</button>
-        <button class="btn" onclick="filterSelection('qa')">QA & Gaming</button>
-        <button class="btn" onclick="filterSelection('design')">3D Printing</button>
-        <button class="btn" onclick="filterSelection('audio')">Music</button>
-    </div>
+                    <span id="login-error" class="error-message"></span>
 
-    <div class="row">
-        <div class="column qa">
-            <div class="content">
-                <h4>Game Testing Portfolio</h4>
-                <p>Extensive experience as a <strong>CQA Lead</strong> and credited tester across multiple shipped titles.</p>
-                <a href="https://www.mobygames.com/person/1054323/adam-carrillo/" target="_blank" class="moby-link">
-                    <img src="https://www.mobygames.com/static/img/logo.37887f87.png" alt="MobyGames Logo" class="moby-logo">
-                    View Credits
-                </a>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+
+                <div class="toggle-link">
+                    Don't have an account? <a href="#" id="show-register">Create one</a>
+                </div>
+            </div>
+
+            <!-- Register Section -->
+            <div id="register-section" style="display: none;">
+                <h1>Create Account</h1>
+                <p>Start your private journaling journey</p>
+
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input
+                            type="text"
+                            id="register-username"
+                            name="username"
+                            required
+                            minlength="3"
+                            maxlength="50"
+                            autocomplete="username"
+                            placeholder="Choose a username (3-50 characters)"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input
+                            type="password"
+                            id="register-password"
+                            name="password"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                            placeholder="Choose a password (min 6 characters)"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <input
+                            type="password"
+                            id="register-confirm-password"
+                            name="confirm-password"
+                            required
+                            autocomplete="new-password"
+                            placeholder="Confirm your password"
+                        >
+                    </div>
+
+                    <span id="register-error" class="error-message"></span>
+
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+
+                <div class="toggle-link">
+                    Already have an account? <a href="#" id="show-login">Login</a>
+                </div>
             </div>
         </div>
-
-        <div class="column design">
-            <div class="content">
-                <h4>Bambu Lab & Design</h4>
-                <p>Functional prototyping with PETG/ABS and designing custom <strong>5U modular synthesizer cases</strong>.</p>
-                <a href="https://makerworld.com/en/@Demon0ne" target="_blank" class="moby-link">View MakerWorld Profile</a>
-            </div>
-        </div>
-
-        <div class="column audio">
-            <div class="content">
-                <h4>demon0ne Stream</h4>
-                <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/demon0ne&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-            </div>
-        </div>
     </div>
 
-    <script>
-        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            if (currentTheme === 'light') {
-                toggleSwitch.checked = true;
-            }
-        }
-
-        function switchTheme(e) {
-            if (e.target.checked) {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }    
-        }
-        toggleSwitch.addEventListener('change', switchTheme, false);
-
-        filterSelection("all")
-        function filterSelection(c) {
-            var x, i;
-            x = document.getElementsByClassName("column");
-            if (c == "all") c = "";
-            for (i = 0; i < x.length; i++) {
-                w3RemoveClass(x[i], "show");
-                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-            }
-        }
-        function w3AddClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-            }
-        }
-        function w3RemoveClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                while (arr1.indexOf(arr2[i]) > -1) {
-                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
-                }
-            }
-            element.className = arr1.join(" ");
-        }
-        var btnContainer = document.getElementById("filter-container");
-        var btns = btnContainer.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function(){
-                var current = document.getElementsByClassName("active");
-                if (current.length > 0) { current[0].className = current[0].className.replace(" active", ""); }
-                this.className += " active";
-            });
-        }
-    </script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

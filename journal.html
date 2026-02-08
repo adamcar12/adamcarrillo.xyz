@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/journal.html" class="logo">📔 My Journal</a>
+                <div class="user-info">
+                    <span class="username" id="current-username"></span>
+                    <button class="btn btn-sm btn-secondary" id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Journal Header -->
+        <div class="journal-header">
+            <h1>Your Entries</h1>
+            <button class="btn btn-primary" id="new-entry-btn">+ New Entry</button>
+        </div>
+
+        <!-- Search & Filters -->
+        <div class="search-filters">
+            <div class="search-bar">
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search entries by keyword..."
+                >
+                <button class="btn btn-secondary" id="search-btn">Search</button>
+                <button class="btn btn-secondary" id="clear-search-btn">Clear</button>
+            </div>
+            <div id="tags-filter" class="tags-filter">
+                <!-- Tags will be populated here -->
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading hidden">
+            <p>Loading entries...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state hidden">
+            <h2>No entries yet</h2>
+            <p>Start writing your first journal entry!</p>
+            <button class="btn btn-primary mt-2" onclick="document.getElementById('new-entry-btn').click()">
+                Create Your First Entry
+            </button>
+        </div>
+
+        <!-- Entries Grid -->
+        <div id="entries-grid" class="entries-grid">
+            <!-- Entries will be populated here -->
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="pagination hidden">
+            <button class="btn btn-secondary" id="prev-page-btn">Previous</button>
+            <span id="page-info">Page 1 of 1</span>
+            <button class="btn btn-secondary" id="next-page-btn">Next</button>
+        </div>
+    </main>
+
+    <!-- New/Edit Entry Modal -->
+    <div id="entry-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">New Entry</h2>
+                <button class="close-modal" id="close-modal-btn">&times;</button>
+            </div>
+
+            <form id="entry-form">
+                <div class="form-group">
+                    <label for="entry-title">Title</label>
+                    <input
+                        type="text"
+                        id="entry-title"
+                        required
+                        maxlength="255"
+                        placeholder="Give your entry a title..."
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="entry-content">Content</label>
+                    <textarea
+                        id="entry-content"
+                        required
+                        placeholder="Write your thoughts..."
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Tags</label>
+                    <div class="tags-input-container" id="tags-input-container">
+                        <input
+                            type="text"
+                            id="tag-input"
+                            placeholder="Add tags (press Enter)..."
+                        >
+                    </div>
+                    <small class="text-muted">Press Enter to add a tag</small>
+                </div>
+
+                <span id="entry-error" class="error-message"></span>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Save Entry</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn" style="flex: 1;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Delete Entry?</h2>
+                <button class="close-modal" onclick="closeDeleteModal()">&times;</button>
+            </div>
+            <p>Are you sure you want to delete this entry? This action cannot be undone.</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-danger" id="confirm-delete-btn" style="flex: 1;">Delete</button>
+                <button class="btn btn-secondary" onclick="closeDeleteModal()" style="flex: 1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/journal.js"></script>
+</body>
+</html>

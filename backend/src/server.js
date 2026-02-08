@@ -8,7 +8,7 @@ const tagRoutes = require('./routes/tag.routes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(express.json());

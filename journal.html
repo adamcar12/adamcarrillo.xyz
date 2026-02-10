@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Journal</title>
+    <title>MindSpace Journal</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="/journal.html" class="logo">📔 My Journal</a>
+                <a href="/journal.html" class="logo">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 4C6 2.89543 6.89543 2 8 2H20L26 8V28C26 29.1046 25.1046 30 24 30H8C6.89543 30 6 29.1046 6 28V4Z" fill="currentColor" opacity="0.2"/>
+                        <path d="M20 2L26 8H22C20.8954 8 20 7.10457 20 6V2Z" fill="currentColor"/>
+                        <circle cx="16" cy="18" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M13 18L15 20L19 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">MindSpace Journal</span>
+                </a>
                 <div class="user-info">
                     <span class="username" id="current-username"></span>
                     <button class="btn btn-sm btn-secondary" id="logout-btn">Logout</button>

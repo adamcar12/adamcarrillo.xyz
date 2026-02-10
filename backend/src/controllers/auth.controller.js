@@ -1,20 +1,27 @@
-const { createUser, findUserByUsername, verifyPassword } = require('../models/user.model');
+const { createUser, findUserByEmail, verifyPassword } = require('../models/user.model');
 const { generateToken } = require('../utils/jwt');
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * Register a new user
  */
 const register = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
 
         // Validate input
-        if (!username || !password) {
-            return res.status(400).json({ error: 'Username and password are required' });
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Email and password are required' });
         }
 
-        if (username.length < 3 || username.length > 50) {
-            return res.status(400).json({ error: 'Username must be between 3 and 50 characters' });
+        // Validate email format
+        if (!EMAIL_REGEX.test(email)) {
+            return res.status(400).json({ error: 'Please enter a valid email address' });
+        }
+
+        if (email.length > 255) {
+            return res.status(400).json({ error: 'Email must be less than 255 characters' });
         }
 
         if (password.length < 6) {
@@ -22,20 +29,20 @@ const register = async (req, res) => {
         }
 
         // Check if user already exists
-        const existingUser = await findUserByUsername(username);
+        const existingUser = await findUserByEmail(email.toLowerCase());
         if (existingUser) {
-            return res.status(409).json({ error: 'Username already exists' });
+            return res.status(409).json({ error: 'An account with this email already exists' });
         }
 
         // Create user
-        const newUser = await createUser(username, password);
+        const newUser = await createUser(email.toLowerCase(), password);
 
         res.status(201).json({
             success: true,
-            message: 'User registered successfully',
+            message: 'Account created successfully',
             user: {
                 id: newUser.id,
-                username: newUser.username
+                email: newUser.email
             }
         });
     } catch (error) {
@@ -49,15 +56,15 @@ const register = async (req, res) => {
  */
 const login = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
 
         // Validate input
-        if (!username || !password) {
-            return res.status(400).json({ error: 'Username and password are required' });
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Email and password are required' });
         }
 
         // Find user
-        const user = await findUserByUsername(username);
+        const user = await findUserByEmail(email.toLowerCase());
         if (!user) {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
@@ -71,13 +78,13 @@ const login = async (req, res) => {
         // Generate JWT token
         const token = generateToken({
             userId: user.id,
-            username: user.username
+            email: user.email
         });
 
         res.json({
             success: true,
             token,
-            username: user.username
+            email: user.email
         });
     } catch (error) {
         console.error('Login error:', error);

@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const username = document.getElementById('login-username').value.trim();
+        const email = document.getElementById('login-email').value.trim();
         const password = document.getElementById('login-password').value;
         const errorEl = document.getElementById('login-error');
         const submitBtn = e.target.querySelector('button[type="submit"]');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = 'Logging in...';
 
         try {
-            await AuthAPI.login(username, password);
+            await AuthAPI.login(email, password);
             window.location.href = '/journal.html';
         } catch (error) {
             errorEl.textContent = error.message || 'Login failed';
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     registerForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const username = document.getElementById('register-username').value.trim();
+        const email = document.getElementById('register-email').value.trim();
         const password = document.getElementById('register-password').value;
         const confirmPassword = document.getElementById('register-confirm-password').value;
         const errorEl = document.getElementById('register-error');
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = 'Creating account...';
 
         try {
-            await AuthAPI.register(username, password);
+            await AuthAPI.register(email, password);
             showSuccess('Account created! Please login.');
             // Switch to login form
             registerSection.style.display = 'none';

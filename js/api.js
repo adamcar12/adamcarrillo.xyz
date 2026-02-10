@@ -9,18 +9,18 @@ function getToken() {
 }
 
 /**
- * Get current username from localStorage
+ * Get current email from localStorage
  */
-function getUsername() {
-    return localStorage.getItem('username');
+function getEmail() {
+    return localStorage.getItem('email');
 }
 
 /**
  * Save authentication data
  */
-function saveAuth(token, username) {
+function saveAuth(token, email) {
     localStorage.setItem('jwt_token', token);
-    localStorage.setItem('username', username);
+    localStorage.setItem('email', email);
 }
 
 /**
@@ -28,7 +28,7 @@ function saveAuth(token, username) {
  */
 function clearAuth() {
     localStorage.removeItem('jwt_token');
-    localStorage.removeItem('username');
+    localStorage.removeItem('email');
 }
 
 /**
@@ -81,22 +81,22 @@ async function apiRequest(endpoint, options = {}) {
 
 // Auth API
 const AuthAPI = {
-    register: async (username, password) => {
+    register: async (email, password) => {
         return apiRequest('/auth/register', {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ email, password }),
             skipAuth: true
         });
     },
 
-    login: async (username, password) => {
+    login: async (email, password) => {
         const data = await apiRequest('/auth/login', {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ email, password }),
             skipAuth: true
         });
         if (data.token) {
-            saveAuth(data.token, data.username);
+            saveAuth(data.token, data.email);
         }
         return data;
     },

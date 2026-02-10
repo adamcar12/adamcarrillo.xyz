@@ -15,8 +15,8 @@ if (!isAuthenticated()) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', async () => {
-    // Display username
-    document.getElementById('current-username').textContent = getUsername();
+    // Display email
+    document.getElementById('current-email').textContent = getEmail();
 
     // Setup event listeners
     setupEventListeners();
